@@ -46,4 +46,35 @@ public class TeacherController {
 
         return "redirect:/teachers";
     }
+
+    @GetMapping("deleteTeacher")
+    public String deleteTeacher(HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        teacherDao.deleteTeacherById(id);
+
+        return "redirect:/teachers";
+    }
+
+    @GetMapping("editTeacher")
+    public String editTeacher(HttpServletRequest request, Model model) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Teacher teacher = teacherDao.getTeacherById(id);
+
+        model.addAttribute("teacher", teacher);
+        return "editTeacher";
+    }
+
+    @PostMapping("editTeacher")
+    public String performEditTeacher(HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Teacher teacher = teacherDao.getTeacherById(id);
+
+        teacher.setFirstName(request.getParameter("firstName"));
+        teacher.setLastName(request.getParameter("lastName"));
+        teacher.setSpecialty(request.getParameter("specialty"));
+
+        teacherDao.updateTeacher(teacher);
+
+        return "redirect:/teachers";
+    }
 }
