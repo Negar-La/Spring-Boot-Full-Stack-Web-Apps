@@ -6,8 +6,8 @@ public class Course {
     private int id;
     private String name;
     private String description;
-    private Teacher teacher;
-    private List<Student> students;
+    private Teacher teacher;    //composition
+    private List<Student> students;   //composition
 
     public int getId() {
         return id;
