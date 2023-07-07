@@ -50,7 +50,7 @@ public class TeacherController {
     @GetMapping("deleteTeacher")
     public String deleteTeacher(HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
-        teacherDao.deleteTeacherById(id);
+            teacherDao.deleteTeacherById(id);
 
         return "redirect:/teachers";
     }
