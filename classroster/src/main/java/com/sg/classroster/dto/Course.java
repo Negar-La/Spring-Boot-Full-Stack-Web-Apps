@@ -1,6 +1,7 @@
 package com.sg.classroster.dto;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Course {
     private int id;
@@ -50,26 +51,45 @@ public class Course {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Course course = (Course) o;
-
-        if (id != course.id) return false;
-        if (!name.equals(course.name)) return false;
-        if (!description.equals(course.description)) return false;
-        if (!teacher.equals(course.teacher)) return false;
-        return students.equals(course.students);
+    public int hashCode() {
+        int hash = 3;
+        hash = 41 * hash + this.id;
+        hash = 41 * hash + Objects.hashCode(this.name);
+        hash = 41 * hash + Objects.hashCode(this.description);
+        hash = 41 * hash + Objects.hashCode(this.teacher);
+        hash = 41 * hash + Objects.hashCode(this.students);
+        return hash;
     }
 
     @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + name.hashCode();
-        result = 31 * result + description.hashCode();
-        result = 31 * result + teacher.hashCode();
-        result = 31 * result + students.hashCode();
-        return result;
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Course other = (Course) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.description, other.description)) {
+            return false;
+        }
+        if (!Objects.equals(this.teacher, other.teacher)) {
+            return false;
+        }
+        if (!Objects.equals(this.students, other.students)) {
+            return false;
+        }
+        return true;
     }
+
+
 }

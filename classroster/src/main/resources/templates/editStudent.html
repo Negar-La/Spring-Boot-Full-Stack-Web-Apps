@@ -29,59 +29,33 @@
             <a href="courses" class="btn btn-outline-primary btn-lg">Courses</a>
         </div>
     </div>
-
     <div class="row m-4 border border-dark">
         <div class="col-3 text-center m-3">
-            <span class="h3">Add Student</span>
+            <span class="h3">Edit Student</span>
         </div>
         <div class="col-7 text-center m-3">
-            <form action="addStudent" method="POST">
+            <form action="editStudent" method="POST">
                 <div class="form-group row">
                     <label for="firstName" class="col-3 col-form-label">
                         First Name</label>
                     <div class="col-9">
-                        <input type="text" name="firstName"
-                               id="firstName" class="form-control"/>
+                        <input type="text" name="firstName" id="firstName"
+                               class="form-control" th:value="${student.firstName}"/>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="lastName" class="col-3 col-form-label">
                         Last Name</label>
                     <div class="col-9">
-                        <input type="text" name="lastName"
-                               id="lastName" class="form-control"/>
+                        <input type="text" name="lastName" id="lastName"
+                               class="form-control"  th:value="${student.lastName}"/>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Add Student</button>
+                <input type="hidden" name="id" th:value="${student.id}"/>
+                <button type="submit" class="btn btn-primary">Update Student</button>
             </form>
         </div>
     </div>
-
-    <div class="row m-4 border border-dark">
-        <div class="col text-center m-3">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="student : ${students}">
-                    <td th:text="${student.id}">Teacher ID</td>
-                    <td th:text="${student.firstName}">Teacher First Name</td>
-                    <td th:text="${student.lastName}">Teacher Last Name</td>
-                    <td><a href="#" th:href="@{/editStudent(id=${student.id})}">Edit</a></td>
-                    <td><a href="#" th:href="@{/deleteStudent(id=${student.id})}">Delete</a></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
 </div>
 <!-- End main body -->
 
