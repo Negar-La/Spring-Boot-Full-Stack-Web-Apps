@@ -25,14 +25,14 @@ public class TeacherController {
     CourseDao courseDao;
 
     @GetMapping("teachers")
-    public String displayTeachers(Model model) {
+    public String displayTeachers(Model model) {   // Model  = we can send data out to a page.
         List<Teacher> teachers = teacherDao.getAllTeachers();
         model.addAttribute("teachers", teachers);
         return "teachers";
     }
 
     @PostMapping("addTeacher")
-    public String addTeacher(HttpServletRequest request) {
+    public String addTeacher(HttpServletRequest request) {  // HttpServletRequest  = to retrieve the fields from the form
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String specialty = request.getParameter("specialty");
@@ -44,11 +44,11 @@ public class TeacherController {
 
         teacherDao.addTeacher(teacher);
 
-        return "redirect:/teachers";
+        return "redirect:/teachers";    // we redirect our browser back to the Teachers page.
     }
 
     @GetMapping("deleteTeacher")
-    public String deleteTeacher(HttpServletRequest request) {
+    public String deleteTeacher(HttpServletRequest request) {    //To pull in the ID from the URL, we use the HttpServletRequest to get that parameter.
         int id = Integer.parseInt(request.getParameter("id"));
             teacherDao.deleteTeacherById(id);
 
