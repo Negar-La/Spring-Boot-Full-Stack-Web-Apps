@@ -31,7 +31,7 @@ public class StudentController {
     }
 
     @PostMapping("addStudent")
-    public String addStudent(String firstName, String lastName) {
+    public String addStudent(String firstName, String lastName) {   // we are bringing the data directly as parameters of the method.
         Student student = new Student();
         student.setFirstName(firstName);
         student.setLastName(lastName);
@@ -41,7 +41,7 @@ public class StudentController {
     }
 
     @GetMapping("deleteStudent")
-    public String deleteStudent(Integer id) {
+    public String deleteStudent(Integer id) {   // We know it should be a number, so we pull it in as an integer.
         studentDao.deleteStudentById(id);
         return "redirect:/students";
     }
