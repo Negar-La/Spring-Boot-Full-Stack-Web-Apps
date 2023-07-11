@@ -1,17 +1,25 @@
 package com.sg.inventory.entities;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class Supplier {
-    
+
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Id
     private int id;
-    
+
+    @Column(nullable = false)
     private String name;
-    
+
+    @Column
     private String address;
-    
+
+    @Column
     private String contact;
-    
+
+    @ManyToMany(mappedBy = "suppliers")
     private List<Product> products;
 
     public List<Product> getProducts() {
