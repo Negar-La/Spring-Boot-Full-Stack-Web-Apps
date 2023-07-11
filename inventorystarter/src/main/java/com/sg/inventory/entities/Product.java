@@ -1,19 +1,32 @@
 package com.sg.inventory.entities;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class Product {
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private int id;
-    
+
+    @Column(nullable = false)
     private String name;
-    
+
+    @Column
     private String description;
-    
+
+    @Column(nullable = false)
     private int quantity = 0;
 
+    @ManyToOne
+    @JoinColumn(name = "storeid", nullable = false)
     private Store store;
-    
+
+    @ManyToMany
+    @JoinTable(name = "product_supplier",
+            joinColumns = {@JoinColumn(name = "productid")},
+            inverseJoinColumns = {@JoinColumn(name = "supplierid")})
     private List<Supplier> suppliers;
 
     public int getId() {

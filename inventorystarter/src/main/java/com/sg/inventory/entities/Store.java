@@ -1,14 +1,20 @@
 package com.sg.inventory.entities;
 
+import javax.persistence.*;
 
+@Entity
 public class Store {
-
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Id
     private int id;
-    
+
+    @Column(nullable = false)
     private String name;
-    
+
+    @Column
     private String location;
-    
+
+    @Column
     private String manager;
 
     public int getId() {
